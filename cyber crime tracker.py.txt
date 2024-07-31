@@ -1,0 +1,54 @@
+import gradio as gr
+import requests
+import random
+
+# Simulated data for demonstration
+def get_cyber_crime_data():
+    # Normally, you would call an API to get real-time data.
+    # Here we simulate it with some random data.
+    cyber_crimes = [
+        {
+            "crime": "Ransomware Attack",
+            "location": "New York, USA",
+            "details": "A hospital was attacked and data was encrypted."
+        },
+        {
+            "crime": "Phishing Scam",
+            "location": "London, UK",
+            "details": "A large bank reported a phishing email targeting customers."
+        },
+        {
+            "crime": "Data Breach",
+            "location": "Berlin, Germany",
+            "details": "A major retail company had a data breach affecting millions of users."
+        },
+        {
+            "crime": "DDoS Attack",
+            "location": "Tokyo, Japan",
+            "details": "A popular online game server was down due to a DDoS attack."
+        },
+        {
+            "crime": "Identity Theft",
+            "location": "Sydney, Australia",
+            "details": "Several individuals reported unauthorized use of their personal information."
+        },
+    ]
+
+    # Return a random crime data for demonstration
+    return random.choice(cyber_crimes)
+
+def fetch_cyber_crime_info():
+    # Get the simulated cyber crime data
+    crime_data = get_cyber_crime_data()
+    return f"**Crime:** {crime_data['crime']}\n**Location:** {crime_data['location']}\n**Details:** {crime_data['details']}"
+
+# Define the Gradio interface
+iface = gr.Interface(
+    fn=fetch_cyber_crime_info,
+    inputs=[],
+    outputs="markdown",
+    title="Real-time Cyber Crime Tracker",
+    description="Click the button to get information about a cyber crime occurring right now."
+)
+
+iface.launch()
